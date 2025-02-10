@@ -1,6 +1,11 @@
 import express from "express"
 import {prisma} from "../config/prisma.js";
 
+export const findAllUsers = async ()=>{
+    const users = await prisma.user.findMany();
+    return users;
+}
+
 
 export const createUser = async (newUser)=>{
     const user = await prisma.user.create({
