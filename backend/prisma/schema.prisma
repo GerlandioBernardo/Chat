@@ -27,6 +27,7 @@ model  User{
   name String
   user String
   password String
+  profilePicture String
   messagesArray Message[]
   
   @@map("users")

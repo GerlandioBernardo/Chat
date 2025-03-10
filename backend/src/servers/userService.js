@@ -13,6 +13,7 @@ export const createUser = async (newUser)=>{
             name: newUser.name,
             password: newUser.password,
             user: newUser.user,
+            profilePicture: newUser.profilePicture,
             messagesArray:{
                 create: []
             }
