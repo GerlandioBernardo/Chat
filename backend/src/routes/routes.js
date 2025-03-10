@@ -4,7 +4,8 @@ import { uploadFileMiddleware } from "../servers/multerService.js";
 
 const route = Router();
 
-route.get('/user', userController.findAllUsers);
-route.post('/user',uploadFileMiddleware, userController.createUser);
+route.get('/', userController.findAllUsers);
+route.post('/',uploadFileMiddleware, userController.createUser);
+route.delete('/:id', userController.deleteUser);
 
 export default route;

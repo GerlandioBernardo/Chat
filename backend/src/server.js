@@ -8,7 +8,7 @@ const porta = 3333;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-app.use(route);
+app.use('/user', route);
 
 app.listen(porta, ()=>{
     console.log(`Servidor rodando na porta: ${porta}`);
