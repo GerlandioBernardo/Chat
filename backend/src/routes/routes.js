@@ -7,5 +7,6 @@ const route = Router();
 route.get('/', userController.findAllUsers);
 route.post('/',uploadFileMiddleware, userController.createUser);
 route.delete('/:id', userController.deleteUser);
+route.patch('/:id',uploadFileMiddleware, userController.updateUser);
 
 export default route;

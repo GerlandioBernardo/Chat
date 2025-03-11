@@ -25,7 +25,7 @@ model Message{
 model  User{
   id String @id @default(uuid())
   name String
-  user String
+  email String
   password String
   profilePicture String
   messagesArray Message[]

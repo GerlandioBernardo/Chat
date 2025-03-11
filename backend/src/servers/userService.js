@@ -12,7 +12,7 @@ export const createUser = async (newUser)=>{
         data:{
             name: newUser.name,
             password: newUser.password,
-            user: newUser.user,
+            email: newUser.email,
             profilePicture: newUser.profilePicture,
             messagesArray:{
                 create: []
@@ -30,4 +30,16 @@ export const deleteUser = async (id)=>{
         }
     })
     return user;
+}
+
+export const updateUser = async (id, updates)=>{
+    const user = await prisma.user.update({
+        where:{
+            id: id,
+        },
+        data:{
+            ...updates
+        }
+        })
+        return user;
 }
