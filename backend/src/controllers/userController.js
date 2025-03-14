@@ -13,17 +13,6 @@ export const findAllUsers = async (req, res)=>{
     }
 }
 
-export const createUser = async (req, res)=>{
-    try {
-        const dados = req.body;
-        const newUser = await userService.createUser(dados);
-        res.status(201).json(newUser);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({message: "Erro ao tentar criar usuario"})
-    }
-}
-
 export const deleteUser = async(req, res)=>{
     try {
         const id = req.params.id;

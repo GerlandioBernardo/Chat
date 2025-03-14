@@ -6,23 +6,6 @@ export const findAllUsers = async ()=>{
     return users;
 }
 
-
-export const createUser = async (newUser)=>{
-    const user = await prisma.user.create({
-        data:{
-            name: newUser.name,
-            password: newUser.password,
-            email: newUser.email,
-            profilePicture: newUser.profilePicture,
-            messagesArray:{
-                create: []
-            }
-        }
-    })
-    return user;
-
-}
-
 export const deleteUser = async (id)=>{
     const user = await prisma.user.delete({
         where:{
