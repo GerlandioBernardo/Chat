@@ -1,5 +1,5 @@
 import express from "express";
-import {hashSync} from "bcryptjs";
+import {compareSync, hashSync} from "bcryptjs";
 import {prisma} from "../config/prisma.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -39,6 +39,35 @@ export const signup = async (req, res)=>{
             user: {...user, password: undefined},
             token: generateToken(user.id),
         });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Internal Server Error"});
+    }
+}
+
+export const login = async (req, res)=>{
+    try {
+        const {email, password} = req.body;
+        const user = await prisma.user.findUnique({
+            where:{
+                email
+            }
+        })
+        if(!user){
+            res.status(404).json({message: "Error usuario não existente"});
+            return;
+        }
+
+        const authorized  = compareSync(password, user.password);
+        if(!authorized){
+            res.status(401).json({message: "Senha incorreta"})
+            return;
+        }
+        
+        res.status(200).json({
+            message: "Login realizado com sucesso " + user.name,
+            token: generateToken(user.id)
+        })
     } catch (error) {
         console.log(error);
         res.status(500).json({message: "Internal Server Error"});
