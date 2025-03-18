@@ -2,7 +2,14 @@ import express from "express"
 import {prisma} from "../config/prisma.js";
 
 export const findAllUsers = async ()=>{
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+        select:{
+            id: true,
+            name: true,
+            email: true,
+            profilePicture: true,
+        }
+    });
     return users;
 }
 
