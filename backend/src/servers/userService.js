@@ -29,7 +29,58 @@ export const updateUser = async (id, updates)=>{
         },
         data:{
             ...updates
+        },
+        select:{
+            id: true,
+            name: true,
+            email: true, 
+            profilePicture: true
         }
-        })
-        return user;
+    })
+    return user;
+}
+export const getProfilePicture = async (id)=>{
+    const urlProfilePicture = await prisma.user.findUnique({
+        where:{
+            id
+        },
+        select:{
+            profilePicture: true,
+        }
+    })
+    return urlProfilePicture;
+}
+export const updateProfilePicture = async (id, profilePicture)=>{
+    const user = await prisma.user.update({
+        where:{
+            id
+        },
+        data:{
+            profilePicture
+        },
+        select:{
+            id: true,
+            name: true,
+            email: true, 
+            profilePicture: true
+        }
+    })
+    return user;
+}
+export const deleteProfilePicture = async (id, profilePictureDefault)=>{
+    const user = await prisma.user.update({
+        where:{
+            id
+        },
+        data:{
+            profilePicture: profilePictureDefault
+        },
+        select:{
+            id: true,
+            name: true,
+            email: true, 
+            profilePicture: true
+        }
+    })
+    return user;
 }

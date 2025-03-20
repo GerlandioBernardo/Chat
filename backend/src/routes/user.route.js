@@ -6,6 +6,12 @@ const userRoute = Router();
 
 userRoute.get('/', userController.findAllUsers);
 userRoute.delete('/:id', userController.deleteUser);
-userRoute.patch('/:id',uploadFileMiddleware, userController.updateUser);
+userRoute.patch('/:id',userController.updateUser);
+
+//rota para upload de imagem
+userRoute.get('/profilePicture/:id', userController.getProfilePicture);
+userRoute.patch('/profilePicture/:id', uploadFileMiddleware, userController.updateProfilePicture);
+userRoute.delete('/profilePicture/:id',userController.deleteProfilePicture);
+
 
 export default userRoute;

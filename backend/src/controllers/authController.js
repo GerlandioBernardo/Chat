@@ -12,7 +12,8 @@ function generateToken(id){
 
 export const signup = async (req, res)=>{
     try {
-        const {name, password, email, profilePicture} = req.body;
+        const {name, password, email} = req.body;
+        const profilePictureDefault = process.env.PROFILEPICTUREDEFAULT;
         const userExists = await prisma.user.findUnique({
             where:{
                 email
@@ -28,7 +29,7 @@ export const signup = async (req, res)=>{
                 name,
                 password: hashedPassword,
                 email,
-                profilePicture,
+                profilePicture: profilePictureDefault,
                 messagesArray:{
                     create: []
                 }

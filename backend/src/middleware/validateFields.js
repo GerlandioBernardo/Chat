@@ -12,4 +12,3 @@ export const validarCampos = async (req, res, next)=>{
     next()
 }
 
-
