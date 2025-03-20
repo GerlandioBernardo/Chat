@@ -1,17 +1,18 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.js";
 import { uploadFileMiddleware } from "../servers/multerService.js";
+import { authMiddleware } from "../middleware/auth.js";
 
 const userRoute = Router();
 
 userRoute.get('/', userController.findAllUsers);
-userRoute.delete('/:id', userController.deleteUser);
-userRoute.patch('/:id',userController.updateUser);
+userRoute.delete('/',authMiddleware, userController.deleteUser);
+userRoute.patch('/',authMiddleware, userController.updateUser);
 
-//rota para upload de imagem
-userRoute.get('/profilePicture/:id', userController.getProfilePicture);
-userRoute.patch('/profilePicture/:id', uploadFileMiddleware, userController.updateProfilePicture);
-userRoute.delete('/profilePicture/:id',userController.deleteProfilePicture);
+//rotas para upload de imagem
+userRoute.get('/profilePicture/', authMiddleware,userController.getProfilePicture);
+userRoute.patch('/profilePicture/', authMiddleware, uploadFileMiddleware, userController.updateProfilePicture);
+userRoute.delete('/profilePicture/',authMiddleware, userController.deleteProfilePicture);
 
 
 export default userRoute;

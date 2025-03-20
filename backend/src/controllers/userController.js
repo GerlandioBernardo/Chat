@@ -15,7 +15,7 @@ export const findAllUsers = async (req, res)=>{
 
 export const deleteUser = async(req, res)=>{
     try {
-        const id = req.params.id;
+        const {id} = req.body;
         const user = await userService.deleteUser(id);
         if(!user){
             res.status(404).json({message: "Error ao excluir usuario"});
@@ -30,8 +30,8 @@ export const deleteUser = async(req, res)=>{
 
 export const updateUser = async (req, res)=>{
     try {
-        const id = req.params.id;
-        const user = await userService.updateUser(id, req.body);
+        const {id, updates} = req.body;
+        const user = await userService.updateUser(id, updates);
         if(!user){
             res.status(404).json({message: "Error ao atualizar usuario"});
             return;
@@ -45,7 +45,7 @@ export const updateUser = async (req, res)=>{
 
 export const getProfilePicture = async(req, res)=>{
     try {
-        const id = req.params.id;
+        const {id} = req.body
         const urlProfilePicture = await userService.getProfilePicture(id);
         if(!urlProfilePicture){
             res.status(404).json({message: "Error ao buscar imagem de usuário"});
@@ -59,8 +59,7 @@ export const getProfilePicture = async(req, res)=>{
 }
 export const updateProfilePicture = async (req, res)=>{
     try {
-        const id = req.params.id;
-        const {profilePicture} = req.body;
+        const {id, profilePicture} = req.body;
         const user = await userService.updateProfilePicture(id, profilePicture);
         if(!user){
             res.status(404).json({message: "Error ao atualizar foto de perfil"});
@@ -76,7 +75,7 @@ export const updateProfilePicture = async (req, res)=>{
 
 export const deleteProfilePicture = async (req, res)=>{
     try {
-        const id = req.params.id;
+        const{id} = req.body;
         const profilePictureDefault = process.env.PROFILEPICTUREDEFAULT;
         const user = await userService.deleteProfilePicture(id, profilePictureDefault);
         if(!user){
