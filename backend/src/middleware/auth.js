@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import jwt, {JwtPayload} from "jsonwebtoken";
+import jwt from "jsonwebtoken"
 
 dotenv.config();
 
@@ -10,14 +10,14 @@ export  const authMiddleware = async (req, res, next)=>{
         res.status(401).json({message: "Token não fornecido"});
         return;
     }
-    const [, token] = authHeader.splite(" ");
+    const [, token] = authHeader.split(" ");
     jwt.verify(token, process.env.CHAVE_SECRETA, (error, decoded)=>{
         if(error){
             res.status(401).json({message: "Token Inválido"});
             return;
         }
         
-        req.body.id = decoded.id;
+        req.body.userId = decoded.id;
         next();
     })
 }
