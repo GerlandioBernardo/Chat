@@ -1,6 +1,19 @@
 import express from "express";
 import * as messageService from "../servers/messageService.js";
 
+export const getMessages = async (req,res)=>{
+    try {
+        const messages = await messageService.getMessages();
+        if(!messages){
+            res.status(404).json({message: "Error ao buscar todas as mensagens"});
+            return;
+        }
+        res.status(200).json(messages);
+    } catch (error) {
+        
+    }
+}
+
 export const createMessage = async (req, res)=>{
     try {
         const {userId} = req.body;

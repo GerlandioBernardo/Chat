@@ -16,6 +16,7 @@ userRoute.patch('/profilePicture/', authMiddleware, uploadFileMiddleware, userCo
 userRoute.delete('/profilePicture/',authMiddleware, userController.deleteProfilePicture);
 
 //rotas para mensagens enviadas pelo usuario
+userRoute.get('/message', messageController.getMessages);
 userRoute.post('/message',authMiddleware, messageController.createMessage);
 
 
