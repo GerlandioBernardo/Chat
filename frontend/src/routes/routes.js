@@ -7,7 +7,8 @@ import Home from "../pages/home/home.js";
 export default function routes(){
     return(
         <Routes>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Login/>}/>
+            <Route path="/home" element={<Home/>}/>
             <Route path="/cadastro" element={<Cadastro/>}/>
         </Routes>
     )

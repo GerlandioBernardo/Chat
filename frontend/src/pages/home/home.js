@@ -1,10 +1,8 @@
 import React from "react";
 import './home.css';
-import {FaSearch, FaPaperPlane} from "react-icons/fa";
-import img from "../../assets/icons/homem.png"
+import {FaSearch} from "react-icons/fa";
 import chat from "../../assets/icons/web-chat.png"
 import enviar from "../../assets/icons/enviar-mensagem.png";
-import {Link} from "react-router-dom";
 
 export default function home(){
     return(
