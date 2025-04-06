@@ -23,8 +23,10 @@ export default function Cadastro(){
         evento.preventDefault();
 
         const user = await signup(dados)
+        // localStorage.removeItem('token');
+        localStorage.setItem('token', user.user.data.token);
         if(user.status === 201){
-            setDados({name: "", email: "", password: ""})
+            setDados({name: "", email: "", password: ""});
             navigate('/home');
             toast.success(user.message)
         }

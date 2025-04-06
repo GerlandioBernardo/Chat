@@ -4,7 +4,7 @@ import axios from "axios";
 export  async function signup(newUser){
     try {
         const user = await axios.post('http://localhost:3333/api/auth/signup', newUser);
-        return {status: user.status, message: user.data.message};
+        return {status: user.status, message: user.data.message, user};
 
     } catch (error) {
         if (error.response) {
@@ -38,8 +38,7 @@ export  async function signup(newUser){
 export async function login (user){
     try {
         const authorized = await axios.post('http://localhost:3333/api/auth/login', user);
-        console.log(authorized.data.token);
-        return {status: authorized.status, message: authorized.data.message};
+        return {status: authorized.status, message: authorized.data.message, authorized};
     } catch (error) {
        if(error.response){
             const {data } = error.response;
@@ -58,4 +57,14 @@ export async function login (user){
             }
        } 
     }
+}
+
+export async function refleshToken(userId){
+    try {
+        const token = await axios.get('http://localhost:3333/api/auth/reflesh', userId);
+        return token.data.token;
+    } catch (error) {
+        return error;
+    }
+
 }
