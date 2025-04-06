@@ -67,10 +67,14 @@ export const login = async (req, res)=>{
         
         res.status(200).json({
             message: "Login realizado com sucesso " + user.name,
-            token: generateToken(user.id)
+            id: user.id
         })
     } catch (error) {
         console.log(error);
         res.status(500).json({message: "Internal Server Error"});
     }
+}
+export async function refleshToken(req, res){
+    const newToken = generateToken(req.body.id);
+    res.status(200).json({token: newToken});
 }
