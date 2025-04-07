@@ -49,12 +49,12 @@ main{
 }
 div .nome{
     font-weight: bold;
-    padding-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: white;
 }
-div .descricao{
-    font-size: 11px;
-    padding-top: 5px;
+div #frase {
+    font-size: 15px;
 }
 .tituloChat{
     background-color: #E7E7EE;

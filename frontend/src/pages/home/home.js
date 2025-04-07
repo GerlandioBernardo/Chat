@@ -3,6 +3,7 @@ import './home.css';
 import {FaSearch} from "react-icons/fa";
 import chat from "../../assets/icons/web-chat.png"
 import enviar from "../../assets/icons/enviar-mensagem.png";
+import  ProfileUser  from "../../api/user.js";
 
 export default function home(){
     return(
@@ -12,7 +13,9 @@ export default function home(){
                     <FaSearch id="icon"/>
                     <input type="text" id="pesquisa" placeholder="Pesquisar..."/>
                 </div>
-                
+                <div className="perfil">
+                    <ProfileUser/>
+                </div>
 
             </section>
             <section className="chat" id="chat">
