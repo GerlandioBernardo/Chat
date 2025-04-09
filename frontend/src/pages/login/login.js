@@ -35,7 +35,7 @@ export default function Login(){
             toast.success(authorized.authorized.data.message);
         }
         else{
-            toast.error(authorized.authorized.data.message);
+            toast.error(authorized.message);
         }
     }
 
