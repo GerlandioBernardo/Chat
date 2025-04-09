@@ -4,7 +4,8 @@ import {FaLock} from "react-icons/fa";
 import {MdEmail} from "react-icons/md"
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-import {login, refleshToken} from "../../api/auth.js";
+import {login} from "../../api/auth.js";
+import {searchMessages} from "../../api/message.js";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,11 +26,12 @@ export default function Login(){
         if(authorized.status === 200){
             setDados({email: "", password: ""});
 
-            const token = await refleshToken(authorized.authorized.data.id);
+    
             localStorage.removeItem('token');
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', authorized.authorized.data.token);
 
             navigate('/home');
+            await searchMessages();
             toast.success(authorized.authorized.data.message);
         }
         else{

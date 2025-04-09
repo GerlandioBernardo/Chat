@@ -4,6 +4,7 @@ import {FaSearch} from "react-icons/fa";
 import chat from "../../assets/icons/web-chat.png"
 import enviar from "../../assets/icons/enviar-mensagem.png";
 import  ProfileUser  from "../../api/user.js";
+import { createMessage} from "../../api/message.js";
 
 export default function home(){
     return(
@@ -28,15 +29,19 @@ export default function home(){
                     </span>
 
                 </div>
-                <div className="mensagens" id="mensagens"></div>
+                <div className="mensagens" id="mensagens">
+                    <div className="mensagensEnviadas">
+                    </div>
+                </div>
                 <div className="enviaMensagem" id="enviaMensagem">
                         <input type="text" id="inputEnviaMensagem" 
                         placeholder="Envie sua mensagem"/>
-                        <button> <img src={enviar} alt="enviar" className="iconeEnviar"/></button>
+                        <button id="buttonEnviar" onClick={createMessage}> <img src={enviar} alt="enviar" className="iconeEnviar"/></button>
                  </div>
 
             </section>
 
         </main>
     )
+
 }
